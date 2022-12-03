@@ -10,6 +10,7 @@ import {LoginScreen} from '@screens/auth/LoginScreen';
 import {APP_SCREEN, RootStackParamList} from '@utilities/types';
 import {dispatch} from '@common/redux';
 import isEqual from 'react-fast-compare';
+import {CreateAccountScreen} from '@components/screens/auth/CreateAccountScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,10 +18,6 @@ const AuthenticationTab: FC = () => {
   const options: NativeStackNavigationOptions = {
     headerShown: false,
   };
-
-  const {
-    theme: {dark},
-  } = useAppSelector(x => x.auth);
 
   return (
     <View style={{flex: 1}}>
@@ -30,6 +27,11 @@ const AuthenticationTab: FC = () => {
         <Stack.Screen
           name={APP_SCREEN.LOGIN}
           component={LoginScreen}
+          options={options}
+        />
+        <Stack.Screen
+          name={APP_SCREEN.CREATE_ACC}
+          component={CreateAccountScreen}
           options={options}
         />
       </Stack.Navigator>

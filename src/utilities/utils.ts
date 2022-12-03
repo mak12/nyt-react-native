@@ -49,9 +49,9 @@ export const getExceptionPayload = (ex: unknown): APIError => {
 
   const typedException = ex as APIError;
   if (
-    ex.hasOwnProperty('message') &&
+    typedException.hasOwnProperty('message') &&
     typeof typedException.message === 'string' &&
-    ex.hasOwnProperty('code') &&
+    typedException.hasOwnProperty('code') &&
     typeof typedException.message === 'number'
   ) {
     return {

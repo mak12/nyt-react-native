@@ -7,6 +7,7 @@ export enum APP_SCREEN {
 
 export type RootStackParamList = {
   [APP_SCREEN.LOGIN]: undefined;
+  [APP_SCREEN.CREATE_ACC]: undefined;
   [APP_SCREEN.HOME]: undefined;
   [APP_SCREEN.ARTICLE_DETAILS]: {
     articleIndex: number; // this should be id of item, but as response isnt giving any id so we are going with index

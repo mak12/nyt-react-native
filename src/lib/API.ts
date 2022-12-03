@@ -1,6 +1,7 @@
 import {store} from '@redux/store';
 import {APP_URLS} from '@utilities/constants';
 import {APIError} from '@utilities/types';
+import {getExceptionPayload, showAlertDialog} from '@utilities/utils';
 import axios from 'axios';
 
 const instance = axios.create({
@@ -13,6 +14,9 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     const token = store.getState().auth.token;
+    console.log('request url ', config.url);
+    console.log('request url ', config.baseURL);
+
     if (token) {
       config.headers!!['Authorization'] = 'Bearer ' + token;
     }
@@ -31,10 +35,10 @@ instance.interceptors.response.use(
     const token = store.getState().auth.token;
     const originalConfig = err.config;
     const requestUrl = originalConfig.url as String;
-
+    console.log('request url ', err);
     if (!requestUrl.includes('auth/login') && err.response) {
       // Access Token was expired
-      //here add logic to refresh token or logout user
+      // here add logic to refresh token or logout user
       // if (err.response.status === 401 && !originalConfig._retry) {
       //   originalConfig._retry = true;
       //   try {

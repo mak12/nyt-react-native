@@ -9,7 +9,11 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {dispatch} from '@common/redux';
-import {AtuhActions, authLogin} from '@redux/reducer/AuthSlice';
+import {
+  AtuhActions,
+  authCreateAccount,
+  authLogin,
+} from '@redux/reducer/AuthSlice';
 import isEqual from 'react-fast-compare';
 import {Box, Button, Center, Input, VStack, Text, Heading} from 'native-base';
 import {fetchArticles} from '@redux/reducer/ArticlesSlice';
@@ -22,46 +26,39 @@ interface Styles {
   main: ViewStyle;
 }
 
-type LoginScreenProps = NativeStackScreenProps<
+type CreateAccountScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  APP_SCREEN.LOGIN
+  APP_SCREEN.CREATE_ACC
 >;
-type LoginScreenNavigationProps = NativeStackNavigationProp<
+type CreateAccountScreenNavigationProps = NativeStackNavigationProp<
   RootStackParamList,
-  APP_SCREEN.LOGIN
+  APP_SCREEN.CREATE_ACC
 >;
-interface LoginFormValues {
+interface CreateAccFormValues {
   email: string;
   password: string;
 }
-const LoginValidation = Yup.object().shape({
+const CreatAccValidation = Yup.object().shape({
   password: Yup.string()
     .min(3, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
-const LoginScreenComp: React.FC<LoginScreenProps> = () => {
-  const navigation = useNavigation<LoginScreenNavigationProps>();
+const CreateAccountScreenComp: React.FC<CreateAccountScreenProps> = () => {
+  const navigation = useNavigation<CreateAccountScreenNavigationProps>();
   const dispatch = useAppDispatch();
   const {loading} = useAppSelector(x => x.auth);
-  const initialValues: LoginFormValues = {email: '', password: ''};
+  const initialValues: CreateAccFormValues = {email: '', password: ''};
 
-  useEffect(() => {
-    // dispatch(
-    //   authLogin({
-    //     email: 'nilson@email.com',
-    //     password: 'nilson',
-    //   }),
-    // );
-  }, []);
+  useEffect(() => {}, []);
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={LoginValidation}
+      validationSchema={CreatAccValidation}
       onSubmit={values => {
         dispatch(
-          authLogin({
+          authCreateAccount({
             email: values.email,
             password: values.password,
           }),
@@ -105,15 +102,15 @@ const LoginScreenComp: React.FC<LoginScreenProps> = () => {
             />
 
             <Button mt={'5'} onPress={() => handleSubmit()}>
-              <Text color={colors.white}>Login</Text>
+              <Text color={colors.white}>Register Account</Text>
             </Button>
             <Text
-              onPress={() => navigation.navigate(APP_SCREEN.CREATE_ACC)}
+              onPress={() => navigation.goBack()}
               mt={'3'}
               textAlign={'center'}
               underline
               color={'blue.400'}>
-              Create Account
+              Login
             </Text>
           </VStack>
           <Loader isLoading={loading} />
@@ -127,4 +124,4 @@ const styles = StyleSheet.create<Styles>({
   main: {flex: 1, backgroundColor: colors.white},
 });
 
-export const LoginScreen = memo(LoginScreenComp, isEqual);
+export const CreateAccountScreen = memo(CreateAccountScreenComp, isEqual);

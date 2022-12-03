@@ -17,6 +17,7 @@ export interface ITopStories {
   title: string;
   item_type: string;
   published_date: string;
+  byline: string;
   multimedia: IMultimedia[];
 }
 
@@ -25,4 +26,8 @@ export interface ITopStoriesResponse {
   section: string;
   num_results: number;
   results: ITopStories[];
+}
+
+export interface IAuthResponse {
+  access_token: string;
 }
