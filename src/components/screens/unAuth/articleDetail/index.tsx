@@ -8,28 +8,19 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import {dispatch} from '@common/redux';
-import {AtuhActions} from '@redux/reducer/AuthSlice';
 import isEqual from 'react-fast-compare';
 import {
   Box,
-  Center,
-  FlatList,
   HStack,
   Image,
   VStack,
   Text,
-  Spacer,
-  Button,
   Heading,
   AspectRatio,
   Avatar,
   Pressable,
 } from 'native-base';
-import {fetchArticles} from '@redux/reducer/ArticlesSlice';
 import {useAppDispatch, useAppSelector} from '@redux/hooks';
-import {ITopStories} from '@models/APIModels';
-import {ArticlesTypes} from '@utilities/constants';
 import {Loader} from '@common/Loader';
 import {images} from '@assets/images';
 interface Styles {
@@ -57,7 +48,6 @@ const RenderImageAndCaption = ({
       <AspectRatio
         ratio={{
           base: 16 / 10,
-          //   md: 9 / 10,
         }}>
         <Image
           mt={'5'}

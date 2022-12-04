@@ -8,24 +8,8 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import {dispatch} from '@common/redux';
-import {AtuhActions} from '@redux/reducer/AuthSlice';
 import isEqual from 'react-fast-compare';
-import {
-  Box,
-  Center,
-  FlatList,
-  HStack,
-  Image,
-  VStack,
-  Text,
-  Spacer,
-  Button,
-  Heading,
-  AspectRatio,
-  Avatar,
-  Pressable,
-} from 'native-base';
+import {Box, FlatList, VStack} from 'native-base';
 import {
   ArticlesAction,
   fetchArticles,

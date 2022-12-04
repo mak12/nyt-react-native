@@ -21,6 +21,7 @@ import {useAppDispatch, useAppSelector} from '@redux/hooks';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {Loader} from '@common/Loader';
+import {AuthInput} from '@common/authInput';
 
 interface Styles {
   main: ViewStyle;
@@ -70,12 +71,7 @@ const CreateAccountScreenComp: React.FC<CreateAccountScreenProps> = () => {
             NewYork Times
           </Heading>
           <VStack flex={1} marginX={'10'} justifyContent="center">
-            {errors.email ? (
-              <Text mb={'2'} fontSize="sm" color={'red.400'}>
-                {errors.email}
-              </Text>
-            ) : null}
-            <Input
+            <AuthInput
               variant="outline"
               placeholder="Enter email"
               onChangeText={handleChange('email')}
@@ -84,13 +80,9 @@ const CreateAccountScreenComp: React.FC<CreateAccountScreenProps> = () => {
               fontSize="md"
               keyboardType="email-address"
               mb={5}
+              error={errors.email}
             />
-            {errors.password ? (
-              <Text mb={'2'} fontSize="sm" color={'red.400'}>
-                {errors.password}
-              </Text>
-            ) : null}
-            <Input
+            <AuthInput
               variant="outline"
               placeholder="Enter password"
               onChangeText={handleChange('password')}
@@ -99,6 +91,7 @@ const CreateAccountScreenComp: React.FC<CreateAccountScreenProps> = () => {
               fontSize="md"
               returnKeyType="done"
               type="password"
+              error={errors.password}
             />
 
             <Button mt={'5'} onPress={() => handleSubmit()}>

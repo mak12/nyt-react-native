@@ -8,8 +8,6 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import {dispatch} from '@common/redux';
-import {AtuhActions} from '@redux/reducer/AuthSlice';
 import isEqual from 'react-fast-compare';
 import {
   Box,
@@ -17,9 +15,7 @@ import {
   FlatList,
   HStack,
   Image,
-  VStack,
   Text,
-  Spacer,
   Button,
   Pressable,
 } from 'native-base';
@@ -107,16 +103,6 @@ const HomeScreenComp: React.FC<HomeScreenProps> = () => {
             }}
           />
         )}
-        // onEndReached={() => {
-        //   setLoadingMore(true);
-        // }}
-        // ListFooterComponent={() => {
-        //   return (
-        //     <Center>
-        //       <Text>Loading More...!!</Text>
-        //     </Center>
-        //   );
-        // }}
       />
       <Loader isLoading={loading} />
     </Box>
