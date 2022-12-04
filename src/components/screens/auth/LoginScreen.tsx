@@ -41,7 +41,7 @@ const LoginValidation = Yup.object().shape({
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
-const LoginScreenComp: React.FC<LoginScreenProps> = () => {
+const LoginScreenComp: React.FC = () => {
   const navigation = useNavigation<LoginScreenNavigationProps>();
   const dispatch = useAppDispatch();
   const {loading} = useAppSelector(x => x.auth);

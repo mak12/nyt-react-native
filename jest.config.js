@@ -11,9 +11,21 @@ module.exports = {
   moduleNameMapper: pathsToModuleNameMapper(
     compilerOptions.paths /*, { prefix: '<rootDir>/' } */,
   ),
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  moduleFileExtensions: [
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
+    'json',
+    'node',
+    'android.js',
+    'ios.js',
+  ],
   setupFiles: ['<rootDir>/jest.setup.js'],
   transformIgnorePatterns: [
     'node_modules/(?!(jest-)?react-native|react-navigation|@react-navigation/.*)',
   ],
+  globals: {
+    __DEV__: true,
+  },
 };

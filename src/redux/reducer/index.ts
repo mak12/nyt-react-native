@@ -5,26 +5,35 @@ import {AuthReducer} from './AuthSlice';
 import createSensitiveStorage from '@utilities/SensitiveStorage';
 import {APP_ACTIONS} from '@utilities/constants';
 import {ArticlesReducer} from './ArticlesSlice';
+import {encryptTransform} from 'redux-persist-transform-encrypt';
+
+const encryptor = encryptTransform({
+  secretKey: 'hulu-lala',
+  onError: function (error) {
+    console.warn('Error while encryption: ', error);
+  },
+});
 
 //securing sensitive info
-const sensitiveStorage = createSensitiveStorage({
-  keychainService: 'nytKeychain',
-  sharedPreferencesName: 'nytSharedPrefs',
-});
+// const sensitiveStorage = createSensitiveStorage({
+//   keychainService: 'nytKeychain',
+//   sharedPreferencesName: 'nytSharedPrefs',
+// });
 // combining all reducers to persist them
 
-const tokenPersistConfig = {
-  key: 'authPersist',
-  storage: sensitiveStorage,
-};
+// const tokenPersistConfig = {
+//   key: 'authPersist',
+//   storage: sensitiveStorage,
+// };
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  transforms: [encryptor],
   blacklist: ['auth'],
   version: 1,
 };
 const appReducer = combineReducers({
-  auth: persistReducer(tokenPersistConfig, AuthReducer),
+  auth: persistReducer(persistConfig, AuthReducer),
   articles: persistReducer(persistConfig, ArticlesReducer),
 });
 
