@@ -29,3 +29,6 @@ or for ios
 `npx react-native run-ios`
 
 #TODO's
+
+- general improvements
+- test cases underway 
