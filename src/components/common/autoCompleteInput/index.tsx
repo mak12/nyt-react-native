@@ -20,9 +20,7 @@ const AutoCompleteComp: React.FC<AutoCompleteProps> = ({
   data,
   onQuerySelected,
 }) => {
-  const [showList, setShowList] = useState<boolean>(false);
-  console.log('render list called');
-
+  const [showList, setShowList] = useState<boolean>(true);
   return (
     <Box>
       <Input

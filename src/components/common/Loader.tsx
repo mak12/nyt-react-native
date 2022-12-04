@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {memo} from 'react';
+import isEqual from 'react-fast-compare';
 import {StyleSheet, View, Modal, ActivityIndicator} from 'react-native';
 
 interface LoaderProps {
@@ -6,7 +7,10 @@ interface LoaderProps {
   onRequestClose?: () => void;
 }
 
-const Loader: React.FC<LoaderProps> = ({isLoading = false, onRequestClose}) => {
+const LoaderComp: React.FC<LoaderProps> = ({
+  isLoading = false,
+  onRequestClose,
+}) => {
   return (
     <Modal
       transparent={true}
@@ -51,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Loader};
+export const Loader = memo(LoaderComp, isEqual);
