@@ -20,6 +20,29 @@ export interface ITopStories {
   byline: string;
   multimedia: IMultimedia[];
 }
+interface IHeadline {
+  main: string;
+}
+
+export interface ISearchedArticlesResponse {
+  status: string;
+
+  response: {
+    docs: ISearchedArticles[];
+  };
+}
+export interface ISearchedArticles {
+  section_name: string;
+  abstract: string;
+  lead_paragraph: string;
+  subsection: string;
+  title: string;
+  item_type: string;
+  published_date: string;
+  byline: string;
+  multimedia: IMultimedia[];
+  headline: IHeadline;
+}
 
 export interface ITopStoriesResponse {
   status: string;

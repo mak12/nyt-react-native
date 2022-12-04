@@ -10,6 +10,7 @@ import API from '../../lib/API';
 interface AppState {
   topStories: APIResponse<ITopStories[]>;
   selectedCategory: string;
+  searchedArticlesHistory: string[];
   loading: boolean;
 }
 
@@ -18,6 +19,7 @@ const initialAppState: AppState = {
     status: APIStatus.IDLE,
   },
   loading: false,
+  searchedArticlesHistory: [],
   selectedCategory: ArticlesTypes.science,
 };
 
@@ -38,10 +40,36 @@ export const fetchArticles = createAsyncThunk(
     }
   },
 );
+
+export const searchArticles = createAsyncThunk(
+  'nyt/searchArticles',
+  async (searchQuerry: string, thunkAPI) => {
+    console.log('category ', searchQuerry);
+    const {rejectWithValue} = thunkAPI;
+    try {
+      const response = await API.get<ITopStoriesResponse>(
+        `${APP_URLS.SEACRH_ARTICLES}${searchQuerry}&api-key=${
+          store.getState().auth.apiKey
+        }`,
+      ); //here you fetch data with catgeories
+      console.log('search res ', response.data);
+      return await response.data;
+    } catch (error) {
+      return rejectWithValue(getExceptionPayload(error));
+    }
+  },
+);
 const articlesSlice = createSlice({
   name: SLICE_NAME.NYT_POSTS,
   initialState: initialAppState,
-  reducers: {},
+  reducers: {
+    onSetArticleQuerry: (state, {payload}: PayloadAction<string>) => {
+      let arr = [...state.searchedArticlesHistory];
+      arr.unshift(payload);
+      arr.length = 5;
+      state.searchedArticlesHistory = [...arr];
+    },
+  },
   extraReducers: builder => {
     builder.addCase(fetchArticles.pending, state => {
       state.topStories.status = APIStatus.PENDING;

@@ -29,6 +29,7 @@ import {ITopStories} from '@models/APIModels';
 import {ArticlesTypes} from '@utilities/constants';
 import {Loader} from '@common/Loader';
 import {ArticleListItem} from '@common/articleListItem';
+import {images} from '@assets/images';
 
 interface Styles {
   main: ViewStyle;
@@ -61,6 +62,17 @@ const HomeScreenComp: React.FC<HomeScreenProps> = () => {
   }, []);
   return (
     <Box style={{flex: 1}} safeArea>
+      <Pressable
+        mx={'5'}
+        alignItems={'flex-end'}
+        onPress={() => navigation.navigate(APP_SCREEN.SEARCH_ARTICLES)}>
+        <Image
+          p={'2'}
+          my={'5'}
+          alt={`searchArticles`}
+          source={images.icSearchIcon}
+        />
+      </Pressable>
       <HStack justifyContent={'space-around'} mb={5}>
         <Button
           onPress={() => fetchArticlesByCat(ArticlesTypes.science)}

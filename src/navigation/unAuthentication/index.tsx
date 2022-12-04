@@ -9,6 +9,7 @@ import {HomeScreen} from '@screens/unAuth/home';
 import {APP_SCREEN, RootStackParamList} from '@utilities/types';
 import isEqual from 'react-fast-compare';
 import {ArticleDetailScreen} from '@components/screens/unAuth/articleDetail';
+import {SearchArticlesScreen} from '@components/screens/unAuth/searchArticles';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -30,6 +31,11 @@ const UnAuthenticationTab: FC = () => {
         <Stack.Screen
           name={APP_SCREEN.ARTICLE_DETAILS}
           component={ArticleDetailScreen}
+          options={options}
+        />
+        <Stack.Screen
+          name={APP_SCREEN.SEARCH_ARTICLES}
+          component={SearchArticlesScreen}
           options={options}
         />
       </Stack.Navigator>

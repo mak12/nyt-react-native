@@ -1,5 +1,6 @@
 export const images = {
   icLeftArrow: require('./source/ic_leftArrow.png'),
+  icSearchIcon: require('./source/ic_search.png'),
   icAvatarPlaceholder: require('./source/ic_profilePlaceholder.png'),
 };
 
