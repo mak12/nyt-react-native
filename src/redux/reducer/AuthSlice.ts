@@ -5,14 +5,14 @@ import {APP_URLS} from '@utilities/constants';
 import {getExceptionPayload, showAlertDialog} from '@utilities/utils';
 import API from '../../lib/API';
 
-interface AppState {
+export interface AuthStateType {
   token: string;
   apiKey: string;
   loading: boolean;
   isLoggedIn: boolean;
 }
 
-const initialAppState: AppState = {
+export const initialAppState: AuthStateType = {
   token: '',
   apiKey: 'ICxd0MYYrICg7EzbsFcV6bfioi3WH65k',
   isLoggedIn: false,
