@@ -22,6 +22,7 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {Loader} from '@common/Loader';
 import {AuthInput} from '@common/authInput';
+import {AuthValidations} from '@utilities/constants';
 
 interface Styles {
   main: ViewStyle;
@@ -41,8 +42,8 @@ interface CreateAccFormValues {
 }
 const CreatAccValidation = Yup.object().shape({
   password: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
+    .min(AuthValidations.passwordMin, 'Too Short!')
+    .max(AuthValidations.passwordMax, 'Too Long!')
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });

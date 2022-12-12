@@ -15,3 +15,8 @@ export const ArticlesTypes = {
   science: 'science',
   world: 'world',
 };
+
+export const AuthValidations = {
+  passwordMin: 3,
+  passwordMax: 20,
+};
