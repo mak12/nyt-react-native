@@ -16,6 +16,7 @@ instance.interceptors.request.use(
     const token = store.getState().auth.token;
     console.log('request url ', config.url);
     console.log('request url ', config.baseURL);
+    console.log('request url tok', token);
 
     if (token) {
       config.headers!!['Authorization'] = 'Bearer ' + token;
